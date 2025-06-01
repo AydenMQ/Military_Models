@@ -1,34 +1,110 @@
+
 # Military_Models
-Model Scripts created in Python Jupyter's Lab.
-Code produced by Ayden McCarthy.
-Manuscript Title: "Optimisation of a Support Vector Regression Model Predicts Individuals’ Maximal Weight Lifted During a Simulated Military Manual Material Handling Assessment".
-Program of Study: PhD.
-Institution: Macquarie University.
-Year: 2025.
-# Model Suite
 
-This repository contains Jupyter Notebook models developed as part of a scientific manuscript. Each model is designed to predict a simulated military assessment outcome using either a ridge regression or a support vector regression. Each notebook follows a logical order and structure, providing reproducible and transparent data analysis for researchers and practitioners. This suite supports applications in performance modelling, prediction, and cross-validation for various populations.
-# Environment Setup
+**Model Scripts created in Python JupyterLab**  
+**Author:** Ayden McCarthy  
+**Manuscript Title:** *Optimisation of a Support Vector Regression Model Predicts Individuals’ Maximal Weight Lifted During a Simulated Military Manual Material Handling Assessment*  
+**Program of Study:** PhD  
+**Institution:** Macquarie University  
+**Year:** 2025  
 
-To replicate the exact environment used in this project, please use the provided `requirements.txt` file:
+---
 
-## 🔧 How to Install:
-1. Clone this repository:
-   ```bash
+## 📘 Overview
+
+This repository contains Jupyter Notebook-based predictive models developed as part of a scientific research project. The focus of the models is to predict simulated military manual handling performance using machine learning approaches, specifically **Ridge Regression** and **Support Vector Regression (SVR)**. 
+
+The notebooks are structured for transparency, reproducibility, and adaptability to other datasets in occupational and physical performance domains.
+
+---
+
+## 🧠 Model Suite
+
+The key models provided include:
+
+- `SVR_Approach_2.ipynb` – **Partial Retraining**: Fine-tunes a general population-trained model on mixed data.
+- `SVR_App_3.ipynb` – **Complete Retraining**: Retrains the SVR model entirely using mixed data for maximal predictive alignment.
+
+Each notebook includes:
+- Data loading and preprocessing
+- Model training and validation
+- Performance evaluation
+- Export functions for predictions
+
+---
+
+## 🗂️ Required Files
+
+The following CSV files are required and must be placed in the working directory:
+
+- `Training_Set_Gen_Pop_No_MP.csv`
+- `Training_Set_Mil_Pop_No_MP.csv`
+- `Testing_Set_Gen_Pop_No_MP.csv`
+- `Testing_Set_Mil_Pop_No_MP.csv`
+
+> These files are provided with correct column headers but contain no data—users must input their own datasets adhering to the required format.
+
+---
+
+## ⚙️ Environment Setup
+
+To replicate the exact environment used for analysis:
+
+1. **Clone the repository:**
+   ```
    git clone https://github.com/AydenMQ/Military_Models.git
    cd Military_Models
    ```
-2. Create a virtual environment (optional but recommended):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+2. **(Optional) Create a virtual environment:**
    ```
-3. Install all required packages:
-   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   ```
+
+3. **Install required packages:**
+   ```
    pip install -r requirements.txt
    ```
 
-This will ensure consistent package versions for reproducibility.
+> These notebooks are intended to be run in **JupyterLab**. Make sure it is installed and launched via:
+```
+jupyter lab
+```
+
+---
+
+## 📊 Usage Instructions
+
+1. Ensure the required `.csv` files are prepared and placed in the project directory.
+2. Open either `SVR_Approach_2.ipynb` or `SVR_App_3.ipynb` in JupyterLab.
+3. Run each cell in sequence. Detailed comments guide the user through each step of preprocessing, model training, and evaluation.
+4. Results (e.g., RMSE, predicted vs actual plots) will be generated inline and optionally saved.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute the code with proper attribution.
+
+---
+
+## 🙏 Citation
+
+If you use these models, code, or datasets for your own research or application, please cite:
+
+```
+McCarthy, A. (2025). Optimisation of a Support Vector Regression Model Predicts Individuals’ Maximal Weight Lifted During a Simulated Military Manual Material Handling Assessment. PhD Thesis, Macquarie University.
+```
+
+Or credit appropriately in your repository/documentation.
+
+---
+
+## 🤝 Contributions and Issues
+
+Issues, feature requests, or suggestions are welcome via GitHub issues. Please open a pull request if you wish to contribute improvements to the notebooks or documentation.
+
 
 
 # SVR Prediction Model (Partially and Completely Retrained)
