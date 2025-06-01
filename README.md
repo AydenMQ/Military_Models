@@ -12,28 +12,52 @@
 
 ## 📘 Overview
 
-This repository contains the finalized **Support Vector Regression (SVR)** model trained using the **complete retraining approach (Approach 3)**. The model was developed as part of a PhD thesis and is designed to predict maximal weight lifted during a simulated military manual material handling task. It includes:
+This repository contains the finalized **Support Vector Regression (SVR)** model developed using the **complete retraining approach (Approach 3)**. The model predicts maximal weight lifted during a simulated military manual material handling task. It was built using both general and military datasets and supports full model retraining, feature selection, evaluation, and deployment.
 
-- A Jupyter Notebook to **train** the complete model: `SVR_App_3.ipynb`
-- A Jupyter Notebook to **predict** new cases using the trained model: `predict_complete_retrained_model.ipynb`
-- The final model and scaler file: `svr_complete_retrained_model.joblib`
+Included files:
+- `SVR_App_3.ipynb` – Notebook to **train** and evaluate the model with SHAP analysis and SBS feature selection
+- `predict_complete_retrained_model.ipynb` – Notebook to **predict** new cases using the saved model
+- `svr_complete_retrained_model.joblib` – Saved model and scaler for reuse
 
 ---
 
 ## 🧠 Model Summary
 
-- **Model type:** Support Vector Regression (SVR)
-- **Kernel:** Sigmoid
-- **Training:** Fully retrained using mixed population data
-- **Exported File:** `svr_complete_retrained_model.joblib`
+- **Model:** Support Vector Regression (SVR)
+- **Kernel:** Sigmoid (selected via GridSearchCV)
+- **Feature Selection:** Sequential Backward Selection (SBS)
+- **Evaluation:** Leave-One-Out Cross-Validation (LOO)
+- **Explained with:** SHAP values
 
-This model file includes both the trained SVR estimator and the feature scaler (`StandardScaler`).
+Saved model includes both the SVR regressor and the StandardScaler used for feature normalization.
 
 ---
 
-## 🗂️ Required Input Format
+## 🛠️ Training Instructions
 
-To generate predictions, the input CSV file must be named `new_data.csv` and include **all of the following columns** with exact header formatting:
+To train and evaluate the complete retrained SVR model:
+
+1. Place the following datasets in your working directory:
+   - `Training_Set_Gen_Pop_No_MP.csv`
+   - `Training_Set_Mil_Pop_No_MP.csv`
+
+2. Open and run all cells in `SVR_App_3.ipynb`. This notebook performs:
+   - Data loading and concatenation
+   - Grid search with LOO CV to optimize SVR hyperparameters
+   - Sequential backward feature selection (SBS)
+   - SHAP analysis for model interpretability
+   - Final model evaluation and prediction visualization
+   
+
+Optional test set evaluation with:
+   - `Testing_Set_Gen_Pop_No_MP.csv`
+   - `Testing_Set_Mil_Pop_No_MP.csv`
+
+---
+
+## 🗂️ Input Format for Prediction
+
+For new predictions, prepare a CSV file named `new_data.csv` with the following columns:
 
 - `IMTP_Peak Vertical Force [N]`  
 - `Avg_Bicep`  
@@ -45,28 +69,27 @@ To generate predictions, the input CSV file must be named `new_data.csv` and inc
 - `Weight (kg)`  
 - `Age`
 
-> ❌ Do NOT include `Lift-to-Place` — this is the value the model predicts.
+> ⚠️ Do NOT include the target `Lift-to-Place`. This is the model output.
 
 ---
 
-## ⚙️ How to Use in JupyterLab
+## 🔍 Prediction Workflow
 
-1. Ensure the following files are in your working directory:
+To generate predictions on new data:
+
+1. Place these in your working directory:
    - `svr_complete_retrained_model.joblib`
    - `new_data.csv`
 
-2. Open and run:
+2. Run the notebook:
    - `predict_complete_retrained_model.ipynb`
 
-This notebook will:
-- Automatically install required packages (`pandas`, `joblib`, etc.)
-- Load the trained SVR model and scaler
-- Preprocess your new input file
-- Output predicted lift values
+This script will:
+- Auto-install any missing packages (`pandas`, `joblib`, etc.)
+- Load the trained SVR model and associated scaler
+- Apply scaling and generate predictions
 
----
-
-## 🧪 Output Example
+Example Output:
 
 ```
 Predicted Lift-to-Place value(s): [78.45 83.12 69.30]
@@ -76,25 +99,25 @@ Predicted Lift-to-Place value(s): [78.45 83.12 69.30]
 
 ## ⚙️ Environment Setup
 
-To replicate the original setup:
+To install required packages manually:
 
 ```bash
-pip install pandas joblib numpy scikit-learn matplotlib
+pip install pandas numpy scikit-learn matplotlib joblib shap mlxtend
 ```
 
-Or let the prediction notebook install them automatically.
+Or let the notebooks install them automatically on first run.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute the code with attribution.
+This project is licensed under the [MIT License](LICENSE). You are free to use, adapt, and redistribute the code with appropriate attribution.
 
 ---
 
 ## 🙏 Citation
 
-If using this model or code, please cite:
+If you use or refer to this model in your work, please cite:
 
 ```
 McCarthy, A. (2025). Optimisation of a Support Vector Regression Model Predicts Individuals’ Maximal Weight Lifted During a Simulated Military Manual Material Handling Assessment. PhD Thesis, Macquarie University.
@@ -104,4 +127,4 @@ McCarthy, A. (2025). Optimisation of a Support Vector Regression Model Predicts 
 
 ## 🤝 Issues & Contributions
 
-This repository distributes a finalized model for public use. For questions or improvements, please open an issue or submit a pull request.
+Questions, improvements, and collaborations are welcome. Please open a GitHub issue or submit a pull request.
