@@ -99,7 +99,7 @@ Predicted Lift-to-Place value(s): [78.45 83.12 69.30]
 
 ## ⚙️ Environment Setup
 
-To install required packages manually:
+To install required packages manually (see requirements.txt):
 
 ```bash
 pip install pandas numpy scikit-learn matplotlib joblib shap mlxtend
